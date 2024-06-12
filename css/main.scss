@@ -1,12 +1,16 @@
 // Foundation
-@use "foundation/_reset.scss";
-@use "foundation/_variables.scss";
+@use 'foundation/_base';
+@use 'foundation/_mixin';
+@use 'foundation/_reset';
+@use 'foundation/_variables';
 
 // Layout
-@use "layout/_header.scss";
-@use "layout/_footer.scss";
+@use 'layout/_header';
+@use 'layout/_footer';
 
 // Object
-@use "object/component/_button.scss";
-@use "object/project/_scsgallerys.scss";
-@use "object/utility/_margin.scss";
+@use 'object/project/company';
+@use 'object/project/constitution';
+@use 'object/project/history';
+@use 'object/project/home';
+@use 'object/project/member';
