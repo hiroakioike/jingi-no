@@ -3,45 +3,45 @@
   justify-content: space-between;
   align-items: center;
 
-  .header-container {
+  .header__container--left {
     display: flex;
     align-items: center;
     padding: 10px;
-    .header-img {
+    .header__img--bird {
       width: 50px;
       margin: 10px;
     }
 
-    .header-title {
+    .header__title--company {
       font-size: 0.8rem;
       display: block;
     }
-    .header-title-jingi {
+    .header__title--jingi {
       font-size: 1rem;
       display: block;
     }
   }
 
-  .humbarger-open,
-  .humbarger-close {
+  .header__menu--open,
+  .header__menu--close {
     width: 40px;
     margin: 10px;
     cursor: pointer;
   }
 
-  .humbarger-close {
+  .header__menu--close {
     display: none;
   }
 }
 
-.header-nav-list {
+.header__nav--list {
   display: none;
   flex-direction: column;
   position: absolute;
   top: 60px;
   right: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #ffffff;
+  border: 1px solid #808080;
   padding: 10px;
   gap: 5px;
   font-size: 1rem;
