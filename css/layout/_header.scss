@@ -2,10 +2,13 @@
 
 .header {
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: space-between;
   align-items: center;
+  background-color: v.$clearWhite;
 
-  &__container--left {
+  .header__container--left {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -24,14 +27,14 @@
     }
   }
 
-  &__menu--open,
-  &__menu--close {
+  .header__menu--open,
+  .header__menu--close {
     width: 40px;
     margin: 10px;
     cursor: pointer;
   }
 
-  &__menu--close {
+  .header__menu--close {
     display: none;
   }
 }
