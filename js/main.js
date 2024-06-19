@@ -1,6 +1,6 @@
-const hamburgerOpen = document.getSelectedById(".hamburger-open");
-const hamburgerClose = document.getSelectedById(".hamburger-close");
-const navList = document.getSelectedById(".header__nav--list");
+const hamburgerOpen = document.getElementById("hamburgerOpen");
+const hamburgerClose = document.getElementById("hamburgerClose");
+const navList = document.getElementById("headerNavList");
 
 hamburgerOpen.addEventListener("click", function () {
   navList.classList.toggle("active");
