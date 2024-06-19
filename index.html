@@ -41,8 +41,33 @@
     <title>仁義なき漢の戦い</title>
     <link rel="stylesheet" href="css/main.css" />
   </head>
-
   <body>
-    <h1>tinn</h1>
+    <header class="header">
+      <div class="header__container--left">
+        <div class="header__img-bird">
+          <img src="img/yumetsuma_bird.svg" alt="ゆめつまバード" />
+        </div>
+        <h1 class="header__title-company">
+          株式会社<span class="header__title-jingi">仁義なき漢の戦い</span>
+        </h1>
+      </div>
+
+      <div id="hamburgerOpen" class="header__menu--open">
+        <img src="img/hamburger_open.svg" alt="メニュー開く" />
+      </div>
+      <div id="hamburgerClose" class="header__menu--close">
+        <img src="img/hamburger_close.svg" alt="メニュー閉じる" />
+      </div>
+    </header>
+    <ul id="headerNavList" class="header__nav-list">
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="company.html">会社情報</a></li>
+      <li><a href="constitution.html">会則</a></li>
+      <li><a href="history.html">年表</a></li>
+      <li><a href="member.html">メンバー</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+
+    <script src="js/main.js"></script>
   </body>
 </html>
