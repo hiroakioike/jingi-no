@@ -1,21 +1,22 @@
-@use "../foundation/_variables.scss" as v;
+@use '../foundation/_variables.scss' as v;
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  margin-top: auto;
   background: v.$lightBlue;
-  display: block;
-  padding: 5px;
+  padding: 16px 24px;
 
   // footer上部
   &__container--on {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .footer__img-jingi {
-      width: 30px;
-      margin: 5px;
+      background: v.$white;
+      width: 45px;
+      height: 45px;
+      padding: 8px;
+      border-radius: 50%;
     }
 
     #textPolicy {
@@ -40,6 +41,7 @@
 
   // footer下部（コピーライト）
   &__text-copy {
+    display: block;
     text-align: right;
     font-size: 0.5rem;
     color: v.$white;

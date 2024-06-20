@@ -1,20 +1,20 @@
-const hamburgerOpen = document.getElementById("hamburgerOpen");
-const hamburgerClose = document.getElementById("hamburgerClose");
-const navList = document.getElementById("headerNavList");
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const overlay = document.getElementById('headerNavOverlay');
+const navList = document.getElementById('headerNavList');
 
-hamburgerOpen.addEventListener("click", function () {
-  navList.classList.toggle("active");
-  hamburgerOpen.style.display = "none";
-  hamburgerClose.style.display = "block";
+hamburgerMenu.addEventListener('click', function () {
+  hamburgerMenu.classList.toggle('active');
+  navList.classList.toggle('active');
+  overlay.classList.toggle('active');
 });
 
-hamburgerClose.addEventListener("click", function () {
-  navList.classList.toggle("active");
-  hamburgerOpen.style.display = "block";
-  hamburgerClose.style.display = "none";
+overlay.addEventListener('click', function () {
+  hamburgerMenu.classList.remove('active');
+  navList.classList.remove('active');
+  overlay.classList.remove('active');
 });
 
-const policy = document.getElementById("textPolicy");
-policy.addEventListener("click", function () {
-  alert("ルールとマナーを守って楽しくデュエル!!");
+const policy = document.getElementById('textPolicy');
+policy.addEventListener('click', function () {
+  alert('ルールとマナーを守って楽しくデュエル!!');
 });
