@@ -1,9 +1,15 @@
 @use '../foundation/_variables.scss' as v;
 
 .footer {
-  margin-top: auto;
   background: v.$lightBlue;
-  padding: 16px 24px;
+  margin-top: auto;
+
+  .footer__container {
+    width: 100%;
+    max-width: v.$contentWidth;
+    margin: 0 auto;
+    padding: 16px 24px;
+  }
 
   // footer上部
   &__container--on {
@@ -19,11 +25,10 @@
       border-radius: 50%;
     }
 
-    #textPolicy {
-      text-align: center;
-      padding-top: 5px;
+    .footer__privacy-policy {
       font-size: 0.8rem;
       color: v.$white;
+      cursor: pointer;
     }
 
     .footer__container--left {
@@ -43,7 +48,7 @@
   &__text-copy {
     display: block;
     text-align: right;
-    font-size: 0.5rem;
+    font-size: 10px;
     color: v.$white;
   }
 }
