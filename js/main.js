@@ -13,3 +13,8 @@ hamburgerClose.addEventListener("click", function () {
   hamburgerOpen.style.display = "block";
   hamburgerClose.style.display = "none";
 });
+
+const policy = document.getElementById("textPolicy");
+policy.addEventListener("click", function () {
+  alert("ルールとマナーを守って楽しくデュエル!!");
+});
