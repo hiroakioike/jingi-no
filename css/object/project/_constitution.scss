@@ -1,0 +1,58 @@
+@use '../../foundation/_variables.scss' as v;
+
+.constitution {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  max-width: v.$contentWidth;
+  margin: 0 auto;
+  padding: 80px 24px;
+
+  h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  ol,
+  ul {
+    padding-left: 24px;
+  }
+}
+
+.gaming {
+  font-weight: bold;
+  color: transparent; /*文字を透明にする*/
+  background-clip: text; /*背景を文字で切り抜く*/
+  background-image: linear-gradient(
+    45deg,
+    red,
+    orange,
+    yellow,
+    green,
+    aqua,
+    blue,
+    purple
+  );
+  background-size: 1200%;
+  animation: 4s linear 0s infinite alternate slide; /* slideアニメーションを4秒で往復の線形移動を無限回行う */
+}
+
+@keyframes slide {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  } /* 右から左へ移動するアニメーション */
+}
