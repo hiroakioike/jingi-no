@@ -1,0 +1,63 @@
+@use "../foundation/_variables.scss" as v;
+
+.header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  background-color: v.$clearWhite;
+
+  .header__container--left {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    .header__img-bird {
+      width: 50px;
+      margin: 10px;
+    }
+
+    .header__title-company {
+      font-size: 0.8rem;
+      display: block;
+    }
+    .header__title-jingi {
+      font-size: 1rem;
+      display: block;
+    }
+  }
+
+  .header__menu--open,
+  .header__menu--close {
+    width: 40px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .header__menu--close {
+    display: none;
+  }
+}
+
+.header__nav-list {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: v.$white;
+  border: 1px solid v.$gray;
+  padding: 10px;
+  gap: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+
+  &.active {
+    display: flex;
+  }
+
+  li {
+    list-style: none;
+    margin: 5px 0;
+  }
+}
