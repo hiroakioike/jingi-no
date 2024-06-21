@@ -1,18 +1,19 @@
 // breakpoints
-$pc: '768px';
+$pc: "768px";
 
 // content-width
 $contentWidth: 1024px;
 
 // colors
-$primary: '';
-$secondary: '';
+$primary: "";
+$secondary: "";
 
 // white
 $white: #ffffff;
 
 // black
 $black: #000000;
+$black-translate: rgba(0, 0, 0, 0.5);
 
 //light blue
 $lightBlue: #1d9bf0;
@@ -23,3 +24,26 @@ $lightGray: #f5f5f5;
 
 // header-background
 $clearWhite: rgba(255, 255, 255, 0.9);
+
+// homeText
+$grad-gold: -webkit-linear-gradient(
+  315deg,
+  #b8751e 0%,
+  #ffce08 37%,
+  #fefeb2 47%,
+  #fafad6 50%,
+  #fefeb2 53%,
+  #e1ce08 63%,
+  #b8751e 100%
+);
+
+// underLine
+$rainbow: -webkit-linear-gradient(
+  20deg,
+  yellow,
+  blue,
+  orange,
+  purple,
+  green,
+  red
+);

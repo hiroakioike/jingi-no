@@ -1,1 +1,130 @@
-@use '../../foundation/mixin' as *;
+@use "../../foundation/mixin" as *;
+@use "../../foundation/variables" as v;
+
+.fv__container {
+  background: v.$black;
+}
+
+.fv__inner {
+  position: relative;
+  height: 650px;
+
+  @include pc {
+    height: 80vh;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
+.home__text-rules {
+  font-weight: bold;
+  text-align: center;
+  font-family: "ヒラギノ明朝 Pro W3", serif;
+  padding: 80px 2rem 0;
+
+  @include pc {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translate(0, -50%);
+    padding: 0;
+  }
+
+  span {
+    background-image: v.$grad-gold;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.slider__container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 700px;
+}
+
+.slider__image {
+  width: 90%;
+  position: absolute;
+  bottom: 40px;
+  right: 50%;
+  transform: translate(50%, 0);
+  opacity: 0;
+  transition: opacity 0.5s;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include pc {
+    bottom: 50%;
+    right: 24px;
+    transform: translate(0, 50%);
+  }
+
+  // 画像の上に白いぼかしレイヤーを重ねる
+  // after はCSS疑似要素
+  &::after {
+    content: ""; // 疑似要素の中に表示するテキスト
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0px 0px 15px 15px v.$black;
+  }
+}
+
+// 画像を表示するためのクラス
+.slider__image.slider__image--active {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.home__news {
+  background: v.$black;
+
+  .home__news-title {
+    position: relative;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    color: v.$white;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      width: 75px;
+      left: 50%;
+      height: 6px;
+      content: "";
+      border-radius: 3px;
+      transform: translate(-50%);
+      background-image: v.$rainbow;
+    }
+  }
+
+  .home__apologyLatter {
+    display: block;
+    text-align: center;
+
+    .home__apologyLatter-image {
+      width: 70%;
+      padding-top: 20px;
+    }
+  }
+
+  .home__apologyLatter--on {
+    color: v.$white;
+    font-size: 0.8rem;
+    text-align: center;
+    display: block;
+  }
+  .home__apologyLatter--under {
+    color: v.$white;
+    font-size: 0.8rem;
+    text-align: center;
+    display: block;
+    padding-bottom: 10px;
+  }
+}

@@ -1,9 +1,10 @@
-@use '../foundation/_variables.scss' as v;
+@use "../foundation/_variables.scss" as v;
 
 .header {
   position: sticky;
   top: 0;
   background-color: v.$clearWhite;
+  z-index: 999;
 
   .header__container {
     display: flex;
