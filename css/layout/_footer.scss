@@ -1,0 +1,46 @@
+@use "../foundation/_variables.scss" as v;
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  background: v.$lightBlue;
+  display: block;
+  padding: 5px;
+
+  // footer上部
+  &__container--on {
+    display: flex;
+    justify-content: space-between;
+
+    .footer__img-jingi {
+      width: 30px;
+      margin: 5px;
+    }
+
+    #textPolicy {
+      text-align: center;
+      padding-top: 5px;
+      font-size: 0.8rem;
+      color: v.$white;
+    }
+
+    .footer__container--left {
+      display: flex;
+
+      .footer__icon-x {
+        width: 40px;
+      }
+      .footer__icon-line {
+        width: 30px;
+        padding: auto;
+      }
+    }
+  }
+
+  // footer下部（コピーライト）
+  &__text-copy {
+    text-align: right;
+    font-size: 0.5rem;
+    color: v.$white;
+  }
+}
