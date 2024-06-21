@@ -1,0 +1,1240 @@
+@charset "UTF-8";
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Roboto", "Noto Sans JP", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/***
+    The new CSS reset - version 1.11.2 (last updated 15.11.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Fix mobile Safari increase font-size on landscape mode */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu,
+summary {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  -moz-appearance: revert;
+       appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+  box-sizing: border-box;
+}
+
+/* reset default text opacity of input placeholder */
+::-moz-placeholder {
+  color: unset;
+}
+::placeholder {
+  color: unset;
+}
+
+/* fix the feature of 'hidden' attribute.
+ display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+ - fix for the content editable attribute will work properly.
+ - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable=false])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable=true]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+  box-sizing: border-box;
+}
+
+/* Remove details summary webkit styles */
+::-webkit-details-marker {
+  display: none;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 999;
+}
+.header .header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
+.header .header__container--left {
+  display: flex;
+  align-items: center;
+}
+.header .header__container--left .header__img-bird {
+  width: 50px;
+  margin-right: 10px;
+}
+.header .header__container--left .header__title-company {
+  font-size: 0.8rem;
+  display: block;
+}
+.header .header__container--left .header__title-jingi {
+  font-size: 1rem;
+  display: block;
+}
+
+.header__menu {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.header__menu:hover {
+  background-color: #f5f5f5;
+}
+.header__menu > span {
+  display: inline-block;
+  transition: all 0.4s;
+  position: absolute;
+  left: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: #000000;
+  width: 45%;
+}
+.header__menu span:nth-of-type(1) {
+  top: 15px;
+}
+.header__menu span:nth-of-type(2) {
+  top: 23px;
+}
+.header__menu span:nth-of-type(3) {
+  top: 31px;
+}
+
+/*activeクラスが付与されると線が回転して×に*/
+.header__menu.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+.header__menu.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.header__menu.active span:nth-of-type(3) {
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+.header__nav-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.header__nav-overlay.active {
+  display: block;
+}
+
+.header__nav-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  transition: right 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  row-gap: 20px;
+  width: 300px;
+  height: 100vh;
+  padding: 0 24px 80px;
+  background-color: #ffffff;
+}
+.header__nav-menu.active {
+  right: 0;
+}
+.header__nav-menu > li a {
+  font-size: 1.2rem;
+  color: #000000;
+  text-decoration: none;
+}
+.header__nav-menu > li a:hover {
+  color: #1d9bf0;
+}
+
+.footer {
+  background: #1d9bf0;
+  margin-top: auto;
+}
+.footer .footer__container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+.footer__container--on {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer__container--on .footer__img-jingi {
+  background: #ffffff;
+  width: 45px;
+  height: 45px;
+  padding: 8px;
+  border-radius: 50%;
+}
+.footer__container--on .footer__privacy-policy {
+  font-size: 0.8rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+.footer__container--on .footer__container--left {
+  display: flex;
+}
+.footer__container--on .footer__container--left .footer__icon-x {
+  width: 40px;
+}
+.footer__container--on .footer__container--left .footer__icon-line {
+  width: 30px;
+  padding: auto;
+}
+.footer__text-copy {
+  display: block;
+  text-align: right;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.company__title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.company__table {
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+}
+
+.company__table th,
+.company__table td {
+  border: 1px solid #ffffff;
+  background-color: #e6f1f6;
+  padding: 0.5em;
+  font-size: 0.9rem;
+}
+
+.company__table th {
+  background-color: #1d9bf0;
+  color: #ffffff;
+  text-align: center;
+  min-width: 4em;
+}
+
+.company__container-image {
+  padding-top: 10px;
+  display: block;
+  text-align: center;
+}
+.company__container-image .company__image {
+  width: 60%;
+}
+
+.company__image-text {
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.constitution {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.constitution h2 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+.constitution h3 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+.constitution p,
+.constitution li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.constitution ol,
+.constitution ul {
+  padding-left: 24px;
+}
+
+.gaming {
+  font-weight: bold;
+  color: transparent; /*文字を透明にする*/
+  -webkit-background-clip: text;
+          background-clip: text; /*背景を文字で切り抜く*/
+  background-image: linear-gradient(45deg, red, orange, yellow, green, aqua, blue, purple);
+  background-size: 1200%;
+  animation: 4s linear 0s infinite alternate slide; /* slideアニメーションを4秒で往復の線形移動を無限回行う */
+}
+
+@keyframes slide {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  } /* 右から左へ移動するアニメーション */
+}
+main.history__wrapper {
+  margin: 2em auto;
+  padding: 0 24px;
+  max-width: 900px;
+  line-height: 1.5;
+  color: rgb(55, 53, 47);
+  /* Indent toggle children */
+}
+@media screen and (min-width: 768px) {
+  main.history__wrapper {
+    margin: 2em auto;
+  }
+}
+main.history__wrapper a,
+main.history__wrapper a.visited {
+  color: inherit;
+  text-decoration: underline;
+}
+main.history__wrapper .pdf-relative-link-path {
+  font-size: 80%;
+  color: #444;
+}
+main.history__wrapper h1,
+main.history__wrapper h2,
+main.history__wrapper h3 {
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+main.history__wrapper .page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.75em;
+}
+main.history__wrapper h1 {
+  font-family: "ヒラギノ明朝 Pro W3", serif;
+  font-size: 1.875rem;
+  margin-top: 1.875rem;
+  padding-left: 16px;
+  border-left: 4px solid rgb(55, 53, 47);
+}
+main.history__wrapper h2 {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  padding-bottom: 4px;
+}
+main.history__wrapper h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+main.history__wrapper .source {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1.5em;
+  word-break: break-all;
+}
+main.history__wrapper .callout {
+  border-radius: 3px;
+  padding: 1rem;
+}
+main.history__wrapper figure {
+  page-break-inside: avoid;
+}
+main.history__wrapper figcaption {
+  opacity: 0.5;
+  font-size: 85%;
+  margin-top: 0.5em;
+}
+main.history__wrapper mark {
+  background-color: transparent;
+}
+main.history__wrapper .indented {
+  padding-left: 1.5em;
+}
+main.history__wrapper hr {
+  background: transparent;
+  display: block;
+  width: 100%;
+  height: 1px;
+  visibility: visible;
+  border: none;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.5);
+}
+main.history__wrapper img {
+  max-width: 100%;
+}
+@media only print {
+  main.history__wrapper img {
+    max-height: 100vh;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+}
+@page {
+  main.history__wrapper {
+    margin: 1in;
+  }
+}
+main.history__wrapper .collection-content {
+  font-size: 0.875rem;
+}
+main.history__wrapper .column-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
+}
+main.history__wrapper .table_of_contents-item {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  padding: 0.125rem;
+}
+main.history__wrapper .table_of_contents-indent-1 {
+  margin-left: 1.5rem;
+}
+main.history__wrapper .table_of_contents-indent-2 {
+  margin-left: 3rem;
+}
+main.history__wrapper .table_of_contents-indent-3 {
+  margin-left: 4.5rem;
+}
+main.history__wrapper .table_of_contents-link {
+  text-decoration: none;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+main.history__wrapper table,
+main.history__wrapper th,
+main.history__wrapper td {
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-collapse: collapse;
+}
+main.history__wrapper table {
+  border-left: none;
+  border-right: none;
+}
+main.history__wrapper th,
+main.history__wrapper td {
+  font-weight: normal;
+  padding: 0.25em 0.5em;
+  line-height: 1.5;
+  min-height: 1.5em;
+  text-align: left;
+}
+main.history__wrapper th {
+  color: rgba(55, 53, 47, 0.6);
+}
+main.history__wrapper ol,
+main.history__wrapper ul {
+  margin: 0;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+main.history__wrapper li > ol:first-child,
+main.history__wrapper li > ul:first-child {
+  margin-block-start: 0.6em;
+}
+main.history__wrapper ul > li {
+  list-style: disc;
+}
+main.history__wrapper ul.to-do-list {
+  padding-inline-start: 0;
+}
+main.history__wrapper ul.to-do-list > li {
+  list-style: none;
+}
+main.history__wrapper .to-do-children-checked {
+  text-decoration: line-through;
+  opacity: 0.375;
+}
+main.history__wrapper ul.toggle > li {
+  list-style: none;
+}
+main.history__wrapper ul {
+  padding-inline-start: 1.7em;
+}
+main.history__wrapper ul > li {
+  padding-left: 0.1em;
+}
+main.history__wrapper ol {
+  padding-inline-start: 1.6em;
+}
+main.history__wrapper ol > li {
+  padding-left: 0.2em;
+}
+main.history__wrapper .mono ol {
+  padding-inline-start: 2em;
+}
+main.history__wrapper .mono ol > li {
+  text-indent: -0.4em;
+}
+main.history__wrapper .toggle {
+  padding-inline-start: 0em;
+  list-style-type: none;
+}
+main.history__wrapper .toggle > li > details {
+  padding-left: 1.7em;
+}
+main.history__wrapper .toggle > li > details > summary {
+  margin-left: -1.1em;
+}
+main.history__wrapper .selected-value {
+  display: inline-block;
+  padding: 0 0.5em;
+  background: rgba(206, 205, 202, 0.5);
+  border-radius: 3px;
+  margin-right: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  white-space: nowrap;
+}
+main.history__wrapper .collection-title {
+  display: inline-block;
+  margin-right: 1em;
+}
+main.history__wrapper .page-description {
+  margin-bottom: 2em;
+}
+main.history__wrapper .simple-table {
+  margin-top: 1em;
+  font-size: 0.875rem;
+  empty-cells: show;
+}
+main.history__wrapper .simple-table td {
+  height: 29px;
+  min-width: 120px;
+}
+main.history__wrapper .simple-table th {
+  height: 29px;
+  min-width: 120px;
+}
+main.history__wrapper .simple-table-header-color {
+  background: rgb(247, 246, 243);
+  color: black;
+}
+main.history__wrapper .simple-table-header {
+  font-weight: 500;
+}
+main.history__wrapper time {
+  opacity: 0.5;
+}
+main.history__wrapper .icon {
+  display: inline-block;
+  max-width: 1.2em;
+  max-height: 1.2em;
+  text-decoration: none;
+  vertical-align: text-bottom;
+  margin-right: 0.5em;
+}
+main.history__wrapper img.icon {
+  border-radius: 3px;
+}
+main.history__wrapper .user-icon {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
+main.history__wrapper .user-icon-inner {
+  font-size: 0.8em;
+}
+main.history__wrapper .text-icon {
+  border: 1px solid #000;
+  text-align: center;
+}
+main.history__wrapper .page-cover-image {
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  max-height: 30vh;
+}
+main.history__wrapper .page-header-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+main.history__wrapper .page-header-icon-with-cover {
+  margin-top: -0.72em;
+  margin-left: 0.07em;
+}
+main.history__wrapper .page-header-icon img {
+  border-radius: 3px;
+}
+main.history__wrapper .link-to-page {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+  font-weight: 500;
+}
+main.history__wrapper p > .user {
+  opacity: 0.5;
+}
+main.history__wrapper td > .user,
+main.history__wrapper td > time {
+  white-space: nowrap;
+}
+main.history__wrapper input[type=checkbox] {
+  transform: scale(1.5);
+  margin-right: 0.6em;
+  vertical-align: middle;
+}
+main.history__wrapper p {
+  font-size: 1rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+main.history__wrapper .image {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+main.history__wrapper .code,
+main.history__wrapper code {
+  background: rgba(135, 131, 120, 0.15);
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 85%;
+  -moz-tab-size: 2;
+    -o-tab-size: 2;
+       tab-size: 2;
+}
+main.history__wrapper code {
+  color: #eb5757;
+}
+main.history__wrapper .code {
+  padding: 1.5em 1em;
+}
+main.history__wrapper .code-wrap {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+main.history__wrapper .code > code {
+  background: none;
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+}
+main.history__wrapper blockquote {
+  font-size: 1.25em;
+  margin: 1em 0;
+  padding-left: 1em;
+  border-left: 3px solid rgb(55, 53, 47);
+}
+main.history__wrapper .bookmark {
+  text-decoration: none;
+  max-height: 8em;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+main.history__wrapper .bookmark-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1.75em;
+  white-space: nowrap;
+}
+main.history__wrapper .bookmark-text {
+  display: flex;
+  flex-direction: column;
+}
+main.history__wrapper .bookmark-info {
+  flex: 4 1 180px;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main.history__wrapper .bookmark-image {
+  width: 33%;
+  flex: 1 1 180px;
+  display: block;
+  position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 1px;
+}
+main.history__wrapper .bookmark-description {
+  color: rgba(55, 53, 47, 0.6);
+  font-size: 0.75em;
+  overflow: hidden;
+  max-height: 4.5em;
+  word-break: break-word;
+}
+main.history__wrapper .bookmark-href {
+  font-size: 0.75em;
+  margin-top: 0.25em;
+}
+main.history__wrapper .sans {
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+main.history__wrapper .code {
+  font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+}
+main.history__wrapper .serif {
+  font-family: Lyon-Text, Georgia, ui-serif, serif;
+}
+main.history__wrapper .mono {
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+}
+main.history__wrapper .pdf .sans {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK JP";
+}
+main.history__wrapper .pdf:lang(zh-CN) .sans {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK SC";
+}
+main.history__wrapper .pdf:lang(zh-TW) .sans {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK TC";
+}
+main.history__wrapper .pdf:lang(ko-KR) .sans {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", "Twemoji", "Noto Color Emoji", "Noto Sans CJK KR";
+}
+main.history__wrapper .pdf .code {
+  font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+}
+main.history__wrapper .pdf:lang(zh-CN) .code {
+  font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+}
+main.history__wrapper .pdf:lang(zh-TW) .code {
+  font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+}
+main.history__wrapper .pdf:lang(ko-KR) .code {
+  font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+}
+main.history__wrapper .pdf .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji", "Noto Color Emoji", "Noto Serif CJK JP";
+}
+main.history__wrapper .pdf:lang(zh-CN) .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji", "Noto Color Emoji", "Noto Serif CJK SC";
+}
+main.history__wrapper .pdf:lang(zh-TW) .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji", "Noto Color Emoji", "Noto Serif CJK TC";
+}
+main.history__wrapper .pdf:lang(ko-KR) .serif {
+  font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, "Twemoji", "Noto Color Emoji", "Noto Serif CJK KR";
+}
+main.history__wrapper .pdf .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK JP";
+}
+main.history__wrapper .pdf:lang(zh-CN) .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK SC";
+}
+main.history__wrapper .pdf:lang(zh-TW) .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK TC";
+}
+main.history__wrapper .pdf:lang(ko-KR) .mono {
+  font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, "Twemoji", "Noto Color Emoji", "Noto Sans Mono CJK KR";
+}
+main.history__wrapper .highlight-default {
+  color: rgb(55, 53, 47);
+}
+main.history__wrapper .highlight-gray {
+  color: rgb(120, 119, 116);
+  fill: rgb(120, 119, 116);
+}
+main.history__wrapper .highlight-brown {
+  color: rgb(159, 107, 83);
+  fill: rgb(159, 107, 83);
+}
+main.history__wrapper .highlight-orange {
+  color: rgb(217, 115, 13);
+  fill: rgb(217, 115, 13);
+}
+main.history__wrapper .highlight-yellow {
+  color: rgb(203, 145, 47);
+  fill: rgb(203, 145, 47);
+}
+main.history__wrapper .highlight-teal {
+  color: rgb(68, 131, 97);
+  fill: rgb(68, 131, 97);
+}
+main.history__wrapper .highlight-blue {
+  color: rgb(51, 126, 169);
+  fill: rgb(51, 126, 169);
+}
+main.history__wrapper .highlight-purple {
+  color: rgb(144, 101, 176);
+  fill: rgb(144, 101, 176);
+}
+main.history__wrapper .highlight-pink {
+  color: rgb(193, 76, 138);
+  fill: rgb(193, 76, 138);
+}
+main.history__wrapper .highlight-red {
+  color: rgb(212, 76, 71);
+  fill: rgb(212, 76, 71);
+}
+main.history__wrapper .highlight-gray_background {
+  background: rgb(241, 241, 239);
+}
+main.history__wrapper .highlight-brown_background {
+  background: rgb(244, 238, 238);
+}
+main.history__wrapper .highlight-orange_background {
+  background: rgb(251, 236, 221);
+}
+main.history__wrapper .highlight-yellow_background {
+  background: rgb(251, 243, 219);
+}
+main.history__wrapper .highlight-teal_background {
+  background: rgb(237, 243, 236);
+}
+main.history__wrapper .highlight-blue_background {
+  background: rgb(231, 243, 248);
+}
+main.history__wrapper .highlight-purple_background {
+  background: rgba(244, 240, 247, 0.8);
+}
+main.history__wrapper .highlight-pink_background {
+  background: rgba(249, 238, 243, 0.8);
+}
+main.history__wrapper .highlight-red_background {
+  background: rgb(253, 235, 236);
+}
+main.history__wrapper .block-color-default {
+  color: inherit;
+  fill: inherit;
+}
+main.history__wrapper .block-color-gray {
+  color: rgb(120, 119, 116);
+  fill: rgb(120, 119, 116);
+}
+main.history__wrapper .block-color-brown {
+  color: rgb(159, 107, 83);
+  fill: rgb(159, 107, 83);
+}
+main.history__wrapper .block-color-orange {
+  color: rgb(217, 115, 13);
+  fill: rgb(217, 115, 13);
+}
+main.history__wrapper .block-color-yellow {
+  color: rgb(203, 145, 47);
+  fill: rgb(203, 145, 47);
+}
+main.history__wrapper .block-color-teal {
+  color: rgb(68, 131, 97);
+  fill: rgb(68, 131, 97);
+}
+main.history__wrapper .block-color-blue {
+  color: rgb(51, 126, 169);
+  fill: rgb(51, 126, 169);
+}
+main.history__wrapper .block-color-purple {
+  color: rgb(144, 101, 176);
+  fill: rgb(144, 101, 176);
+}
+main.history__wrapper .block-color-pink {
+  color: rgb(193, 76, 138);
+  fill: rgb(193, 76, 138);
+}
+main.history__wrapper .block-color-red {
+  color: rgb(212, 76, 71);
+  fill: rgb(212, 76, 71);
+}
+main.history__wrapper .block-color-gray_background {
+  background: rgb(241, 241, 239);
+}
+main.history__wrapper .block-color-brown_background {
+  background: rgb(244, 238, 238);
+}
+main.history__wrapper .block-color-orange_background {
+  background: rgb(251, 236, 221);
+}
+main.history__wrapper .block-color-yellow_background {
+  background: rgb(251, 243, 219);
+}
+main.history__wrapper .block-color-teal_background {
+  background: rgb(237, 243, 236);
+}
+main.history__wrapper .block-color-blue_background {
+  background: rgb(231, 243, 248);
+}
+main.history__wrapper .block-color-purple_background {
+  background: rgba(244, 240, 247, 0.8);
+}
+main.history__wrapper .block-color-pink_background {
+  background: rgba(249, 238, 243, 0.8);
+}
+main.history__wrapper .block-color-red_background {
+  background: rgb(253, 235, 236);
+}
+main.history__wrapper .select-value-color-uiBlue {
+  background-color: rgba(35, 131, 226, 0.07);
+}
+main.history__wrapper .select-value-color-pink {
+  background-color: rgb(245, 224, 233);
+}
+main.history__wrapper .select-value-color-purple {
+  background-color: rgb(232, 222, 238);
+}
+main.history__wrapper .select-value-color-green {
+  background-color: rgb(219, 237, 219);
+}
+main.history__wrapper .select-value-color-gray {
+  background-color: rgb(227, 226, 224);
+}
+main.history__wrapper .select-value-color-transparentGray {
+  background-color: rgba(227, 226, 224, 0);
+}
+main.history__wrapper .select-value-color-translucentGray {
+  background-color: rgba(255, 255, 255, 0.0375);
+}
+main.history__wrapper .select-value-color-orange {
+  background-color: rgb(250, 222, 201);
+}
+main.history__wrapper .select-value-color-brown {
+  background-color: rgb(238, 224, 218);
+}
+main.history__wrapper .select-value-color-red {
+  background-color: rgb(255, 226, 221);
+}
+main.history__wrapper .select-value-color-yellow {
+  background-color: rgb(253, 236, 200);
+}
+main.history__wrapper .select-value-color-blue {
+  background-color: rgb(211, 229, 239);
+}
+main.history__wrapper .select-value-color-pageGlass {
+  background-color: undefined;
+}
+main.history__wrapper .select-value-color-washGlass {
+  background-color: undefined;
+}
+main.history__wrapper .checkbox {
+  display: inline-flex;
+  vertical-align: text-bottom;
+  width: 16;
+  height: 16;
+  background-size: 16px;
+  margin-left: 2px;
+  margin-right: 5px;
+}
+main.history__wrapper .checkbox-on {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+main.history__wrapper .checkbox-off {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.fv__container {
+  background: #000000;
+}
+
+.fv__inner {
+  position: relative;
+  height: 650px;
+}
+@media screen and (min-width: 768px) {
+  .fv__inner {
+    height: 80vh;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+}
+
+.home__text-rules {
+  font-weight: bold;
+  text-align: center;
+  font-family: "ヒラギノ明朝 Pro W3", serif;
+  padding: 80px 2rem 0;
+}
+@media screen and (min-width: 768px) {
+  .home__text-rules {
+    position: absolute;
+    top: 50%;
+    left: 24px;
+    transform: translate(0, -50%);
+    padding: 0;
+  }
+}
+.home__text-rules span {
+  background-image: -webkit-linear-gradient(315deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.slider__container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 700px;
+}
+
+.slider__image {
+  width: 90%;
+  position: absolute;
+  bottom: 40px;
+  right: 50%;
+  transform: translate(50%, 0);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.slider__image > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (min-width: 768px) {
+  .slider__image {
+    bottom: 50%;
+    right: 24px;
+    transform: translate(0, 50%);
+  }
+}
+.slider__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0px 0px 15px 15px #000000;
+}
+
+.slider__image.slider__image--active {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.home__news {
+  background: #000000;
+}
+.home__news .home__news-title {
+  position: relative;
+  text-align: center;
+  padding: 1rem 0.5rem;
+  color: #ffffff;
+}
+.home__news .home__news-title::after {
+  position: absolute;
+  bottom: 0;
+  width: 75px;
+  left: 50%;
+  height: 6px;
+  content: "";
+  border-radius: 3px;
+  transform: translate(-50%);
+  background-image: -webkit-linear-gradient(20deg, yellow, blue, orange, purple, green, red);
+}
+.home__news .home__apologyLatter {
+  display: block;
+  text-align: center;
+}
+.home__news .home__apologyLatter .home__apologyLatter-image {
+  width: 70%;
+  padding-top: 20px;
+}
+.home__news .home__apologyLatter--on {
+  color: #ffffff;
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+}
+.home__news .home__apologyLatter--under {
+  color: #ffffff;
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+  padding-bottom: 10px;
+}
+
+.member {
+  max-width: 1024px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.member .member__title {
+  margin-bottom: 40px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  padding-left: 16px;
+  border-left: 4px solid rgb(55, 53, 47);
+}
+.member .member__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.member .member__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+@media screen and (min-width: 768px) {
+  .member .member__item {
+    flex-direction: row;
+  }
+  .member .member__item.reverse {
+    flex-direction: row-reverse;
+  }
+}
+.member .member__item .member__image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  filter: drop-shadow(5px 5px 5px #aaa);
+  margin: 0 auto;
+}
+.member .member__item .member__image > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media screen and (min-width: 768px) {
+  .member .member__item .member__image {
+    width: 200px;
+  }
+}
+.member .member__item .member__profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+.member .member__item .member__profile .member__name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.apology__container {
+  position: relative;
+  top: 0;
+  display: flex;
+  justify-content: center;
+}
+.apology__container .apology__image {
+  text-align: center;
+  opacity: 0.4;
+  top: 0;
+}
+.apology__container .apology__container-text {
+  position: absolute;
+}
+.apology__container .apology__container-text .apology__text-title {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  color: #000000;
+  padding-top: 50px;
+  text-shadow: 1px 1px #ffffff;
+}
+.apology__container .apology__container-text .apology__text-sushi {
+  font-size: 1.5rem;
+  color: #000000;
+  padding-top: 50px;
+  text-shadow: 1px 1px #ffffff;
+}/*# sourceMappingURL=main.css.map */
