@@ -1,0 +1,45 @@
+@use "../../foundation/mixin" as *;
+@use "../../foundation/variables" as v;
+
+.company__title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.company__table {
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+}
+
+.company__table th,
+.company__table td {
+  border: 1px solid v.$white;
+  background-color: v.$ivory;
+  padding: 0.5em;
+  font-size: 0.9rem;
+}
+.company__table th {
+  background-color: v.$lightBlue;
+  color: v.$white;
+  text-align: center;
+  min-width: 4em;
+}
+
+.company__container-image {
+  padding-top: 10px;
+  display: block;
+  text-align: center;
+
+  .company__image {
+    width: 60%;
+  }
+}
+
+.company__image-text {
+  font-size: 1rem;
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+}
