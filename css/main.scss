@@ -1,16 +1,17 @@
 // Foundation
-@use 'foundation/_base';
-@use 'foundation/_mixin';
-@use 'foundation/_reset';
-@use 'foundation/_variables';
+@use "foundation/_base";
+@use "foundation/_mixin";
+@use "foundation/_reset";
+@use "foundation/_variables";
 
 // Layout
-@use 'layout/_header';
-@use 'layout/_footer';
+@use "layout/_header";
+@use "layout/_footer";
 
 // Object
-@use 'object/project/company';
-@use 'object/project/constitution';
-@use 'object/project/history';
-@use 'object/project/home';
-@use 'object/project/member';
+@use "object/project/company";
+@use "object/project/constitution";
+@use "object/project/history";
+@use "object/project/home";
+@use "object/project/member";
+@use "object/project/news";
